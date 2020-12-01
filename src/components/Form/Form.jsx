@@ -17,36 +17,10 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-const Form = () => {
-  const ufs = [
-    'AC',
-    'AL',
-    'AM',
-    'AP',
-    'BA',
-    'CE',
-    'DF',
-    'ES',
-    'GO',
-    'MA',
-    'MT',
-    'MS',
-    'MG',
-    'PA',
-    'PB',
-    'PR',
-    'PE',
-    'PI',
-    'RJ',
-    'RN',
-    'RO',
-    'RS',
-    'RR',
-    'SC',
-    'SE',
-    'SP',
-    'TO',
-  ];
+import { ufs } from '../../utils/DataUtils';
+import { post } from '../../api';
+
+function Form() {
   const spacingDef = 3;
   const [nome, setNome] = React.useState('');
   const [cpf, setCpf] = React.useState('');
@@ -54,24 +28,28 @@ const Form = () => {
   const [uf, setUf] = React.useState('');
   const [salario, setSalario] = React.useState(0.0);
 
-  const [cliente, setCliente] = React.useState({});
-
   const handleInputChange = (e, setState) => setState(e.target.value);
   const handleSubmit = e => {
     e.preventDefault();
-    setCliente({
-      nome,
-      cpf,
-      idade,
-      uf,
-      salario,
-    });
-    console.log(cliente);
+
+    post({ nome, cpf, idade, uf, salario });
+
+    setNome('');
+    setCpf('');
+    setIdade(0);
+    setUf('');
+    setSalario(0.0);
   };
 
   return (
     <Flex width="full" align="center" justifyContent="center">
-      <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
+      <Box
+        p={8}
+        maxWidth="500px"
+        borderWidth={1}
+        borderRadius={8}
+        boxShadow="lg"
+      >
         <Text>Insira seus dados</Text>
         <Box my={spacingDef} textAlign="center">
           <form onSubmit={handleSubmit}>
@@ -132,6 +110,6 @@ const Form = () => {
       </Box>
     </Flex>
   );
-};
+}
 
 export default Form;
