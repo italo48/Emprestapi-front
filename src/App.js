@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   ChakraProvider,
   Box,
@@ -6,13 +6,10 @@ import {
   Grid,
   Heading,
   theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
+} from "@chakra-ui/react";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
-import Form from './components/Form';
-import Result from './components/Result';
-
-function App() {
+function App({ children }) {
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
@@ -20,8 +17,7 @@ function App() {
           <ColorModeSwitcher justifySelf="flex-end" />
           <VStack spacing={8}>
             <Heading>Emprestapi</Heading>
-            <Form />
-            <Result />
+            {children}
           </VStack>
         </Grid>
       </Box>

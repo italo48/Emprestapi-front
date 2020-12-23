@@ -1,16 +1,14 @@
-const url = 'https://localhost:8080/v1/avaliar';
-
-export const post = cliente =>
-  fetch(url, {
-    method: 'post',
+export const post = async (cliente) =>
+  await fetch("http://localhost:8080/avaliar", {
+    method: "post",
+    mode: "no-cors",
     body: cliente,
-    mode: 'cors',
     headers: new Headers({
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     }),
-  }).then(res =>
+  }).then((res) =>
     res
       .json()
-      .then(data => console.log(data))
-      .catch(err => console.log(`Erro: ${err}`))
+      .then((data) => console.log(data))
+      .catch((err) => console.log(`Erro: ${err}`))
   );
